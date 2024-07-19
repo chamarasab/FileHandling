@@ -1,55 +1,72 @@
-import java.io.File;  // Import the File class
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileWriter;
-import java.io.IOException;  // Import the IOException class to handle errors
+import java.io.IOException;
 import java.util.Scanner;
+
 public class App {
-    public static void main(String[] args) throws Exception {
+    public static void main(String[] args) {
         System.out.println("Hello, World!");
-        //file creation
+        // File creation
         try {
-            File myObj = new File("C:\\Users\\Chamara\\Documents\\Java\\hello.txt");
+            File myObj = new File("C:\\Users\\RND\\Documents\\Java\\FileHandling\\hello.txt");
             if (myObj.createNewFile()) {
-              System.out.println("File created: " + myObj.getName());
+                System.out.println("File created: " + myObj.getName());
             } else {
-              System.out.println("File already exists.");
+                System.out.println("File already exists.");
             }
-          } catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
-        //file edit
+        // Delay for 10 seconds before updating the file
         try {
-            FileWriter myWriter = new FileWriter("C:\\Users\\Chamara\\Documents\\Java\\hello.txt");
+          Thread.sleep(10000); // 10000 milliseconds = 30 seconds
+      } catch (InterruptedException e) {
+          System.out.println("An error occurred during the sleep period.");
+          e.printStackTrace();
+      }
+
+        // File edit
+        try {
+            FileWriter myWriter = new FileWriter("C:\\Users\\RND\\Documents\\Java\\FileHandling\\hello.txt");
             myWriter.write("Files in Java might be tricky, but it is fun enough!");
             myWriter.close();
             System.out.println("Successfully wrote to the file.");
-          } catch (IOException e) {
+        } catch (IOException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
-        //read file
+        // Read file
         try {
-            File myObj = new File("C:\\Users\\Chamara\\Documents\\Java\\hello.txt");
+            File myObj = new File("C:\\Users\\RND\\Documents\\Java\\FileHandling\\hello.txt");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
-              String data = myReader.nextLine();
-              System.out.println(data);
+                String data = myReader.nextLine();
+                System.out.println(data);
             }
             myReader.close();
-          } catch (FileNotFoundException e) {
+        } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
 
-        //delete file
-        File myObj = new File("C:\\Users\\Chamara\\Documents\\Java\\hello.txt"); 
-        if (myObj.delete()) { 
-          System.out.println("Deleted the file: " + myObj.getName());
+        // Delay for 30 seconds before deleting the file
+        try {
+            Thread.sleep(10000); // 30000 milliseconds = 30 seconds
+        } catch (InterruptedException e) {
+            System.out.println("An error occurred during the sleep period.");
+            e.printStackTrace();
+        }
+
+        // Delete file
+        File myObj = new File("C:\\Users\\RND\\Documents\\Java\\FileHandling\\hello.txt");
+        if (myObj.delete()) {
+            System.out.println("Deleted the file: " + myObj.getName());
         } else {
-          System.out.println("Failed to delete the file.");
-        } 
+            System.out.println("Failed to delete the file.");
+        }
     }
 }
